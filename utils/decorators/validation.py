@@ -18,7 +18,7 @@ def validate_put_file(f):
             if storage_location == '':
                 raise APIException('unknown_storage_location', BAD_REQUEST)
 
-            if file_object.mimetype not in settings.ALLOWED_MIMETYPE_UPLOAD:
+            if file_object.mimetype in settings.DISALLOWED_MIMETYPE_UPLOAD:
                 raise APIException('not_allowed_file')
 
         kwargs['request'] = request

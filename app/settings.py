@@ -14,4 +14,4 @@ TZ: str = env.get('TZ', 'UTC')
 X_AUTH_KEY: str = env.get('X_AUTH_KEY', '4mJjjnHe-tK9GloCCF-kC_0nYcgBIVTDeMSUGwoOVb4') # use secrets.token_urlsafe(32)
 
 UPLOAD_FOLDER: str = env.get('UPLOAD_FOLDER', 'storage')
-ALLOWED_MIMETYPE_UPLOAD: list = [i.strip() for i in env.get('ALLOWED_MIMETYPE_UPLOAD', 'image/png, image/jpeg, application/pdf, application/vnd.ms-excel').split(',')]
+DISALLOWED_MIMETYPE_UPLOAD: list = [i.strip() for i in env.get('DISALLOWED_MIMETYPE_UPLOAD', '').split(',')]
