@@ -23,7 +23,5 @@ class StorageService:
     def delete_file(object_location: str):
         object_location = os.path.join(settings.UPLOAD_FOLDER, object_location)
 
-        if not os.path.exists(object_location):
-            raise APIException('object_file_not_found', 400)
-
-        os.remove(object_location)
+        if os.path.exists(object_location):
+            os.remove(object_location)
