@@ -5,12 +5,20 @@ from utils.exceptions import APIException
 
 class StorageService:
     def put_file(file: FileStorage, location: str):
-        directory = os.path.join(settings.UPLOAD_FOLDER, location)
+        store_location = os.path.join(settings.UPLOAD_FOLDER, location)
 
-        if not os.path.exists(directory):
-            os.mkdir(directory)
+        directory = settings.UPLOAD_FOLDER
+        for subdir in location.split('/'):
+            directory = os.path.join(directory, subdir)
+            if not os.path.exists(directory):
+                os.mkdir(directory)
 
-        file.save(os.path.join(settings.UPLOAD_FOLDER, location, file.filename))
+            try:
+                file.save(os.path.join(settings.BASEPATH, store_location, file.filename))
+                break
+            except Exception as err:
+                print(f"[ERROR] {err}")
+                continue
 
     def delete_file(object_location: str):
         object_location = os.path.join(settings.UPLOAD_FOLDER, object_location)
