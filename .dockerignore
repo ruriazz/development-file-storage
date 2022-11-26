@@ -1,0 +1,10 @@
+.DS_Store
+.vscode/
+
+storage/*
+!storage/.gitkeep
+
+.gitignore
+.git*
+
+Dockerfile
